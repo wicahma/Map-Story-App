@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRegister"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.RegisterFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25.dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitleRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20.dp"
+            android:alpha="0"
+            android:text="@string/tx_register"
+            android:textAlignment="center"
+            android:textSize="28.sp"
+            android:textStyle="bold"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            app:boxCornerRadiusBottomEnd="13.dp"
+            app:boxCornerRadiusBottomStart="13.dp"
+            app:boxCornerRadiusTopEnd="13.dp"
+            app:boxCornerRadiusTopStart="13.dp"
+            app:errorEnabled="false"
+            tools:alpha="100">
+
+            <EditText
+                android:id="@+id/ed_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_name"
+                android:paddingHorizontal="13.dp"
+                android:paddingVertical="10.dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            app:boxCornerRadiusBottomEnd="13.dp"
+            app:boxCornerRadiusBottomStart="13.dp"
+            app:boxCornerRadiusTopEnd="13.dp"
+            app:boxCornerRadiusTopStart="13.dp"
+            app:errorEnabled="false"
+            tools:alpha="100">
+
+            <EditText
+                android:id="@+id/ed_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="13.dp"
+                android:paddingVertical="10.dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            app:boxCornerRadiusBottomEnd="13.dp"
+            app:boxCornerRadiusBottomStart="13.dp"
+            app:boxCornerRadiusTopEnd="13.dp"
+            app:boxCornerRadiusTopStart="13.dp"
+            app:errorEnabled="false"
+            tools:alpha="100">
+
+            <com.dicoding.androiddicodingsubmission_storyapp.ui.components.EditText
+                android:id="@+id/ed_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:paddingHorizontal="13.dp"
+                android:paddingVertical="10.dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.dp"
+            android:alpha="0"
+            android:text="@string/btn_register_text"
+            tools:alpha="100" />
+
+        <LinearLayout
+            android:id="@+id/askLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alpha="0"
+            android:orientation="horizontal"
+            tools:alpha="100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6.dp"
+                android:text="@string/tx_tanya_akun" />
+
+            <TextView
+                android:id="@+id/txToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tx_tanya_login" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

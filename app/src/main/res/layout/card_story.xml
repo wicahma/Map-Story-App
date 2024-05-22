@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardPost"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5.dp"
+    android:transitionName="post_card"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="10dp">
+
+    <android.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgDiscordCard"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:transitionName="image_post"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/tv_nama_user"
+            android:textSize="18.dp"
+            android:transitionName="post_user" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20.dp"
+            android:layout_marginBottom="25.dp"
+            android:text="@string/tv_tanggal_posting"
+            android:textSize="13.dp"
+            android:transitionName="post_date" />
+    </android.widget.LinearLayout>
+
+</androidx.cardview.widget.CardView>

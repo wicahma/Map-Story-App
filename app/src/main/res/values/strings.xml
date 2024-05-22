@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Android Dicoding Submission - Story App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cd_image_login">Image Design Login</string>
+    <string name="tx_login">Masuk</string>
+    <string name="hint_email">Masukkan email kalian</string>
+    <string name="hint_password">Masukkan password kalian</string>
+    <string name="btn_login_text">Masuk</string>
+    <string name="cd_image_register">Image Design Register</string>
+    <string name="tx_register">Daftar</string>
+    <string name="hint_name">Masukkan nama kalian</string>
+    <string name="btn_register_text">Daftar</string>
+    <string name="tx_tanya_akun">Sudah memiliki akun? </string>
+    <string name="tx_tanya_login"><u>Login sekarang</u></string>
+    <string name="tx_tanya_belum">Belum punya akun?</string>
+    <string name="tx_tanya_belum_under"><u>Register sekarang</u></string>
+    <string name="tv_nama_user">Nama User</string>
+    <string name="tv_tanggal_posting">Tanggal Postingan</string>
+    <string name="tv_deskripsi">Deskripsi</string>
+    <string name="tv_deskripsi_title">Deskripsi</string>
+    <string name="cd_image_upload">Image Preview Upload</string>
+    <string name="btn_text_select_image">Piih gambar</string>
+    <string name="btn_text_upload">Upload Story</string>
+    <string name="hint_description">Tambahkan deskripsi ke gambar</string>
+    <string name="tx_logout">Logout</string>
+    <string name="tc_username">Nama User</string>
+    <string name="cd_fab_add">Add Post Button</string>
+    <string name="img_placeholder_upload">Placeholder Gambar</string>
+    <string name="tv_desc_title">Deskripsi</string>
+    <string name="tx_button_camera">Kamera</string>
+</resources>

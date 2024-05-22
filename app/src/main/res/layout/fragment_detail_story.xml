@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutDetailStory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="10.dp"
+    android:paddingTop="10.dp"
+    tools:context=".ui.fragments.DetailStoryFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imgContainerCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:transitionName="post_card"
+        app:cardCornerRadius="20.dp">
+
+        <ImageView
+            android:id="@+id/imgDiscordCard"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:transitionName="image_post"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.dp"
+        android:text="@string/tv_nama_user"
+        android:textSize="16.dp"
+        android:transitionName="post_user" />
+
+    <TextView
+        android:id="@+id/tv_datepost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_tanggal_posting"
+        android:textSize="13.dp"
+        android:transitionName="post_date" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15.dp"
+        android:text="@string/tv_deskripsi_title"
+        android:textSize="20.sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_deskripsi" />
+
+</LinearLayout>
