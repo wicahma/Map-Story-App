@@ -89,6 +89,19 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <CheckBox
+            android:id="@+id/check_box_add_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_location_checkbox" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map_upload"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/button_add"
             android:layout_width="wrap_content"

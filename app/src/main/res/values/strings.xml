@@ -29,4 +29,12 @@
     <string name="img_placeholder_upload">Placeholder Gambar</string>
     <string name="tv_desc_title">Deskripsi</string>
     <string name="tx_button_camera">Kamera</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="menuju_ke_maps">Menuju ke maps</string>
+    <string name="retry">Coba lagi</string>
+    <string name="add_location_checkbox">Tambahkan lokasi sekarang</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
 </resources>

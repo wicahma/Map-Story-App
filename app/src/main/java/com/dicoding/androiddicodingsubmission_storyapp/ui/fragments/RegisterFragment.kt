@@ -17,7 +17,6 @@ import com.dicoding.androiddicodingsubmission_storyapp.ui.RegisterViewModel
 import com.dicoding.androiddicodingsubmission_storyapp.ui.ViewModelFactory
 import com.dicoding.androiddicodingsubmission_storyapp.utils.Event
 import com.dicoding.androiddicodingsubmission_storyapp.utils.validateEmail
-import com.dicoding.androiddicodingsubmission_storyapp.utils.validatePassword
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : Fragment() {
@@ -40,9 +39,20 @@ class RegisterFragment : Fragment() {
         binding.edRegisterEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.buttonRegister.isEnabled =
-                    !binding.tilEmail.isErrorEnabled && !binding.tilPassword.isErrorEnabled
                 showInputError("email", s?.validateEmail())
+                binding.buttonRegister.isEnabled =
+                    !binding.tilEmail.isErrorEnabled && binding.edRegisterPassword.length() >= 8 && binding.edRegisterName.text.isNotBlank()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.edRegisterName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                showInputError("name", s?.isBlank())
+                binding.buttonRegister.isEnabled =
+                    !binding.tilEmail.isErrorEnabled && binding.edRegisterPassword.length() >= 8 && binding.edRegisterName.text.isNotBlank()
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -52,8 +62,7 @@ class RegisterFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.buttonRegister.isEnabled =
-                    !binding.tilEmail.isErrorEnabled && !binding.tilPassword.isErrorEnabled
-                showInputError("password", s?.validatePassword())
+                    !binding.tilEmail.isErrorEnabled && binding.edRegisterPassword.length() >= 8 && binding.edRegisterName.text.isNotBlank()
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -105,14 +114,13 @@ class RegisterFragment : Fragment() {
                     binding.tilEmail.error = null
                 }
             }
-
-            "password" -> {
+            "name" -> {
                 if (isError!!) {
-                    binding.tilPassword.isErrorEnabled = true
-                    binding.tilPassword.error = "Password minimal 8 karakter"
+                    binding.tilNama.isErrorEnabled = true
+                    binding.tilNama.error = "Nama tidak boleh kosong"
                 } else {
-                    binding.tilPassword.isErrorEnabled = false
-                    binding.tilPassword.error = null
+                    binding.tilNama.isErrorEnabled = false
+                    binding.tilNama.error = null
                 }
             }
         }

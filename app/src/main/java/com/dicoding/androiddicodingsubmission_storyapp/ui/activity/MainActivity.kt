@@ -1,4 +1,4 @@
-package com.dicoding.androiddicodingsubmission_storyapp.ui
+package com.dicoding.androiddicodingsubmission_storyapp.ui.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

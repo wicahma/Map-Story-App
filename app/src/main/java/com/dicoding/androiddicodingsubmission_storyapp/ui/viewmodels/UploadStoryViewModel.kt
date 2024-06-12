@@ -12,8 +12,13 @@ class UploadStoryViewModel(private val storyRepository: StoryRepository) : ViewM
     private val _imageUri = MediatorLiveData<Uri>()
     val imageUri = _imageUri
 
-    fun uploadStory(rbDesc: RequestBody, multipartBodyImage: MultipartBody.Part) =
-        storyRepository.uploadStory(rbDesc, multipartBodyImage)
+    fun uploadStory(
+        rbDesc: RequestBody,
+        multipartBodyImage: MultipartBody.Part,
+        lat: RequestBody?,
+        lng: RequestBody?
+    ) =
+        storyRepository.uploadStory(rbDesc, multipartBodyImage, lat, lng)
 
     fun setImageUri(uri: Uri) {
         _imageUri.value = uri

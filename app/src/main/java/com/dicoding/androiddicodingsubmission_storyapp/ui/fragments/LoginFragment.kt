@@ -19,7 +19,6 @@ import com.dicoding.androiddicodingsubmission_storyapp.ui.LoginViewModel
 import com.dicoding.androiddicodingsubmission_storyapp.ui.ViewModelFactory
 import com.dicoding.androiddicodingsubmission_storyapp.utils.Event
 import com.dicoding.androiddicodingsubmission_storyapp.utils.validateEmail
-import com.dicoding.androiddicodingsubmission_storyapp.utils.validatePassword
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment() {
@@ -42,29 +41,34 @@ class LoginFragment : Fragment() {
 
         loginViewModel.getToken().observe(viewLifecycleOwner) { token: String? ->
             if (!token.isNullOrBlank() && findNavController().currentDestination?.id == R.id.loginFragment) view.findNavController()
-                .navigate(LoginFragmentDirections.actionLoginFragmentToStoryFragment(loginViewModel.getUsername().toString()))
+                .navigate(
+                    LoginFragmentDirections.actionLoginFragmentToStoryFragment(
+                        loginViewModel.getUsername().toString()
+                    )
+                )
         }
 
         binding.edLoginEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.buttonLogin.isEnabled =
-                    !binding.tilEmail.isErrorEnabled && !binding.tilPassword.isErrorEnabled
                 showInputError("email", s?.validateEmail())
+                binding.buttonLogin.isEnabled =
+                    !binding.tilEmail.isErrorEnabled && binding.edLoginPassword.length() >= 8
             }
 
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?) {
+            }
         })
 
         binding.edLoginPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.buttonLogin.isEnabled =
-                    !binding.tilEmail.isErrorEnabled && !binding.tilPassword.isErrorEnabled
-                showInputError("password", s?.validatePassword())
+                    !binding.tilEmail.isErrorEnabled && binding.edLoginPassword.length() >= 8
             }
 
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?) {
+            }
         })
 
         binding.buttonLogin.setOnClickListener {
@@ -116,16 +120,6 @@ class LoginFragment : Fragment() {
                 } else {
                     binding.tilEmail.isErrorEnabled = false
                     binding.tilEmail.error = null
-                }
-            }
-
-            "password" -> {
-                if (isError!!) {
-                    binding.tilPassword.isErrorEnabled = true
-                    binding.tilPassword.error = "Password minimal 8 karakter"
-                } else {
-                    binding.tilPassword.isErrorEnabled = false
-                    binding.tilPassword.error = null
                 }
             }
         }

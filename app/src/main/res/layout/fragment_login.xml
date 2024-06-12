@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="19.dp"
+        android:layout_marginTop="50.dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
+                android:inputType="textPassword"
                 android:paddingHorizontal="13.dp"
                 android:paddingVertical="10.dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,17 +81,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20.dp"
             android:alpha="0"
+            android:enabled="false"
             android:text="@string/btn_login_text"
-            tools:alpha="100" />
+            tools:alpha="100"
+            tools:enabled="true" />
 
         <LinearLayout
             android:id="@+id/askAccount"
             android:layout_width="wrap_content"
-            android:alpha="0"
-            tools:alpha="100"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:alpha="0"
+            android:orientation="horizontal"
+            tools:alpha="100">
 
             <TextView
                 android:layout_width="wrap_content"

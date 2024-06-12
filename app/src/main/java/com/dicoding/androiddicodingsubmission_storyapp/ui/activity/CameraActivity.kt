@@ -1,4 +1,4 @@
-package com.dicoding.androiddicodingsubmission_storyapp.ui
+package com.dicoding.androiddicodingsubmission_storyapp.ui.activity
 
 import android.content.Intent
 import android.os.Build

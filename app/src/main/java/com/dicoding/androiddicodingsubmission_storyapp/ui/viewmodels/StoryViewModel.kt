@@ -1,22 +1,22 @@
 package com.dicoding.androiddicodingsubmission_storyapp.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.dicoding.androiddicodingsubmission_storyapp.data.StoryRepository
-import com.dicoding.androiddicodingsubmission_storyapp.utils.SettingPreferences
-import kotlinx.coroutines.runBlocking
+import com.dicoding.androiddicodingsubmission_storyapp.data.remote.response.StoryResponse
 
 class StoryViewModel(
-    private val preferences: SettingPreferences, private val storyRepository: StoryRepository
+    private val storyRepository: StoryRepository
 ) : ViewModel() {
 
-    fun getAllStory() = storyRepository.getAllStory()
+    val getAllStory: LiveData<PagingData<StoryResponse>> =
+        storyRepository.getAllStory().cachedIn(viewModelScope)
 
     fun getUsername() = storyRepository.getName().asLiveData()
 
-    fun logoutUser() {
-        runBlocking {
-            preferences.clearUserToken()
-        }
-    }
+    fun logoutUser() = storyRepository.logoutUser()
 }

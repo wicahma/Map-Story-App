@@ -1,0 +1,9 @@
+{
+  "error": false,
+  "message": "success",
+  "loginResult": {
+    "userId": "user-J3kxlW6kIpBnIIUk",
+    "name": "Maddog",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLUoza3hsVzZrSXBCbklJVWsiLCJpYXQiOjE3MTY3NzY3Nzd9.BZ8LrKv2XpWZlzLhyJNbWVWEOgtB4uFb0ohDhJfEDyY"
+  }
+}

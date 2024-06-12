@@ -37,12 +37,21 @@ interface ApiService {
     @POST("stories")
     fun addNewStory(
         @Part photo: MultipartBody.Part,
-        @Part("description") password: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?,
     ): Call<DefaultResponse>
 
     @GET("stories")
-    fun getAllStories(
+    suspend fun getAllStories(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 20,
         @Query("location") getWithLoc: Int = 0,
+    ): StoriesResponse
+
+    @GET("stories")
+    fun getStoriesWithLocation(
+        @Query("location") getWithLoc: Int = 1
     ): Call<StoriesResponse>
 
     @GET("stories/{id}")

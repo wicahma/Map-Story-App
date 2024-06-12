@@ -5,7 +5,7 @@ import com.dicoding.androiddicodingsubmission_storyapp.data.StoryRepository
 
 class RegisterViewModel(private val storyRepository: StoryRepository) : ViewModel() {
 
-    fun register(nama: String, email: String, pass: String) =
-        storyRepository.registerUser(email, pass, nama)
+    fun register(name: String, email: String, pass: String) =
+        storyRepository.registerUser(email, pass, name)
 
 }

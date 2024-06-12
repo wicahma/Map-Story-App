@@ -41,6 +41,12 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
         }
     }
 
+    suspend fun clearUserName() {
+        dataStore.edit { preferences ->
+            preferences.remove(USER_NAME)
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: SettingPreferences? = null

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.dicoding.androiddicodingsubmission_storyapp.data.StoryRepository
 import com.dicoding.androiddicodingsubmission_storyapp.di.Injection
+import com.dicoding.androiddicodingsubmission_storyapp.ui.viewmodels.MapsViewModel
 import com.dicoding.androiddicodingsubmission_storyapp.utils.SettingPreferences
 import com.dicoding.androiddicodingsubmission_storyapp.utils.dataStore
 
@@ -30,12 +31,10 @@ class ViewModelFactory private constructor(
         with(modelClass) {
             when {
                 isAssignableFrom(StoryViewModel::class.java) -> StoryViewModel(
-                    pref,
                     storyRepository
                 )
 
                 isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(
-                    pref,
                     storyRepository
                 )
 
@@ -44,7 +43,7 @@ class ViewModelFactory private constructor(
                     storyRepository
                 )
 
-                isAssignableFrom(DetailStoryViewModel::class.java) -> DetailStoryViewModel(
+                isAssignableFrom(MapsViewModel::class.java) -> MapsViewModel(
                     storyRepository
                 )
 

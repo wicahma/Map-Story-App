@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import com.dicoding.androiddicodingsubmission_storyapp.data.Result
 import com.dicoding.androiddicodingsubmission_storyapp.data.remote.response.StoryResponse
 import com.dicoding.androiddicodingsubmission_storyapp.databinding.CardStoryBinding
 import com.dicoding.androiddicodingsubmission_storyapp.databinding.FragmentStoryBinding
 import com.dicoding.androiddicodingsubmission_storyapp.ui.StoryViewModel
 import com.dicoding.androiddicodingsubmission_storyapp.ui.ViewModelFactory
+import com.dicoding.androiddicodingsubmission_storyapp.ui.adapters.LoadingStateAdapter
 import com.dicoding.androiddicodingsubmission_storyapp.ui.adapters.StoryListAdapter
 import com.dicoding.androiddicodingsubmission_storyapp.utils.Event
 import com.dicoding.androiddicodingsubmission_storyapp.utils.relativeDateFormatter
@@ -25,6 +25,7 @@ class StoryFragment : Fragment() {
 
     private var _binding: FragmentStoryBinding? = null
     private val binding get() = _binding!!
+    private lateinit var storyViewModel: StoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,40 +34,25 @@ class StoryFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        setStoryListAdapter()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val storyViewModel: StoryViewModel by viewModels { factory }
+        storyViewModel = ViewModelProvider(this, factory)[StoryViewModel::class.java]
 
         val nama = arguments?.getString("namaUser")
+
 
         binding.txUsername.text = nama
 
         storyViewModel.getUsername().observe(viewLifecycleOwner) { username ->
             binding.txUsername.text = username
         }
-
-        storyViewModel.getAllStory().observe(viewLifecycleOwner) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        setSnackBar(Event(result.error))
-                    }
-
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        setStoryListAdapter(result.data, storyViewModel)
-                    }
-                }
-            }
-        }
-
-
 
         binding.actionLogout.setOnClickListener {
             storyViewModel.logoutUser()
@@ -78,15 +64,26 @@ class StoryFragment : Fragment() {
             view.findNavController()
                 .navigate(StoryFragmentDirections.actionStoryFragmentToUploadStoryFragment())
         }
+
+        binding.actionToMap.setOnClickListener {
+            view.findNavController()
+                .navigate(StoryFragmentDirections.actionStoryFragmentToMapsActivity())
+        }
     }
 
 
     private fun setStoryListAdapter(
-        storyResponse: List<StoryResponse?>, viewModel: StoryViewModel
     ) {
         val adapter = StoryListAdapter(this)
-        adapter.submitList(storyResponse)
-        binding.rvStoryList.adapter = adapter
+        binding.rvStoryList.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+
+        storyViewModel.getAllStory.observe(viewLifecycleOwner) { result ->
+            adapter.submitData(lifecycle, result)
+        }
 
         adapter.setOnItemClickCallback(object : StoryListAdapter.OnItemClickCallback {
             @RequiresApi(Build.VERSION_CODES.N)
@@ -101,10 +98,10 @@ class StoryFragment : Fragment() {
                 )
                 view.findNavController().navigate(
                     StoryFragmentDirections.actionStoryFragmentToDetailStoryFragment(
-                        data.photoUrl.toString(),
-                        data.name.toString(),
-                        data.createdAt?.relativeDateFormatter()!!,
-                        data.description.toString()
+                        data.photoUrl,
+                        data.name,
+                        data.createdAt.relativeDateFormatter(),
+                        data.description
                     ),
                     extras,
                 )

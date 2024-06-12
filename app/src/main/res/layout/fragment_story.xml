@@ -26,6 +26,19 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/tx_logout"
+        app:layout_constraintEnd_toStartOf="@+id/action_to_map"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/action_to_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/menuju_ke_maps"
+        android:padding="13dp"
+        android:src="@drawable/map"
+        android:background="@drawable/button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

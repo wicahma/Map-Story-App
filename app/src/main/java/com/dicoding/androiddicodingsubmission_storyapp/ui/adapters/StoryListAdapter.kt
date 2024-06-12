@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.androiddicodingsubmission_storyapp.data.remote.response.StoryResponse
@@ -15,7 +15,7 @@ import com.dicoding.androiddicodingsubmission_storyapp.databinding.CardStoryBind
 import com.dicoding.androiddicodingsubmission_storyapp.utils.relativeDateFormatter
 
 class StoryListAdapter(private val fragment: Fragment) :
-    ListAdapter<StoryResponse, StoryListAdapter.StoryViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<StoryResponse, StoryListAdapter.StoryViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -30,7 +30,7 @@ class StoryListAdapter(private val fragment: Fragment) :
         @RequiresApi(Build.VERSION_CODES.N)
         fun bind(story: StoryResponse) {
             binding.tvItemName.text = story.name
-            binding.tvDate.text = story.createdAt?.relativeDateFormatter()
+            binding.tvDate.text = story.createdAt.relativeDateFormatter()
             Glide.with(fragment).load(story.photoUrl).into(binding.imgDiscordCard)
             binding.root.setOnClickListener { view ->
                 onItemClickCallback.onItemClicked(
@@ -52,7 +52,9 @@ class StoryListAdapter(private val fragment: Fragment) :
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: StoryViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user)
+        if (user != null) {
+            holder.bind(user)
+        }
     }
 
     companion object {
